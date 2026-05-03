@@ -3,254 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vanguard Industrial Network | Premium B2B Intelligence</title>
+    <title>Vantek | Operational Shortcut Network</title>
+    <script src="https://8x8.vc/vpaas-magic-cookie-887e00e0e0e0e0e0e0e0/external_api.js"></script>
     <style>
-        :root {
-            --primary: #0A192F;
-            --secondary: #64FFDA;
-            --text-main: #CCD6F6;
-            --text-muted: #8892B0;
-            --bg-dark: #020C1B;
-            --card-bg: #112240;
-        }
+        :root { --primary: #002d72; --accent: #00d4ff; --dark: #121212; --light: #f4f4f4; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--light); color: var(--dark); }
+        header { background: var(--primary); color: white; padding: 2rem; text-align: center; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+        /* Expert Grid */
+        .expert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .badge { background: var(--accent); color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+        
+        /* Video Section */
+        #video-room { display: none; margin-top: 2rem; background: white; padding: 1rem; border-radius: 12px; }
+        #jitsi-container { height: 600px; width: 100%; border-radius: 8px; overflow: hidden; }
 
-        body {
-            background-color: var(--primary);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem 5%;
-            background-color: rgba(10, 25, 47, 0.95);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--card-bg);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--secondary);
-            letter-spacing: 1px;
-        }
-
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 8rem 5% 4rem;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            color: #E6F1FF;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-        }
-
-        .cta-btn {
-            background-color: transparent;
-            color: var(--secondary);
-            border: 1px solid var(--secondary);
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-btn:hover {
-            background-color: rgba(100, 255, 218, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Expert Roster */
-        .roster {
-            padding: 5rem 5%;
-            background-color: var(--bg-dark);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 4rem;
-            color: #E6F1FF;
-        }
-
-        .expert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .expert-card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: left;
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-
-        .expert-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .expert-tag {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: rgba(100, 255, 218, 0.1);
-            color: var(--secondary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .expert-name {
-            font-size: 1.5rem;
-            color: #E6F1FF;
-            margin-bottom: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .expert-title {
-            color: var(--secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .expert-bio {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
-        }
-
-        .book-btn {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: var(--text-main);
-            color: var(--primary);
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .book-btn:hover {
-            background-color: white;
-        }
-
-        /* Footer */
-        footer {
-            padding: 2rem 5%;
-            text-align: center;
-            border-top: 1px solid var(--card-bg);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .founder-info {
-            margin-top: 1rem;
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
+        .btn { background: var(--primary); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; }
+        .btn-video { background: #28a745; margin-top: 1rem; }
+        
+        footer { margin-top: 5rem; padding: 2rem; border-top: 1px solid #ddd; font-size: 0.8rem; color: #777; text-align: center; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">Vanguard Network</div>
-        <div class="nav-links">
-            <a href="#experts">The Roster</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#contact" class="cta-btn" style="padding: 0.5rem 1rem;">Client Login</a>
+<header>
+    <h1>VANTEK</h1>
+    <p>Connecting verified experience to shorten your path.</p>
+</header>
+
+<div class="container">
+    <div class="expert-grid">
+        <!-- Expert 1: Academic Pivot -->
+        <div class="card">
+            <span class="badge">SCHOLARSHIP EXPERT</span>
+            <h3>PhD Admissions Mentor</h3>
+            <p>Specializing in full-ride PhD applications and research proposals for METU and international universities.</p>
+            <p><strong>Rate: $75/hr</strong></p>
+            <button class="btn" onclick="window.open('https://stripe.com/placeholder')">Book & Pay</button>
+            <button class="btn btn-video" onclick="startMeeting('Vantek-Scholarship-Room')">Join Meeting Room</button>
         </div>
-    </nav>
 
-    <section class="hero">
-        <h1>High-Level Industrial & Operational Intelligence</h1>
-        <p>Direct, 1-on-1 consultations with senior physicists, mechanical engineers, and supply chain architects currently operating within top-tier defense and manufacturing sectors.</p>
-        <a href="#experts" class="cta-btn">View Available Experts</a>
-    </section>
-
-    <section id="experts" class="roster">
-        <h2 class="section-title">Verified Industry Experts</h2>
-        
-        <div class="expert-grid">
-            <!-- Expert 1 -->
-            <div class="expert-card">
-                <div class="expert-tag">$850 / hr</div>
-                <h3 class="expert-name">Dr. Ozan K.</h3>
-                <div class="expert-title">Senior Systems Engineer | Defense Tech</div>
-                <p class="expert-bio">Specializes in closed-loop feedback control systems and thermal dynamics. 15+ years overseeing R&D integration for large-scale defense contractors. Available for supply chain and structural operational reviews.</p>
-                <button class="book-btn" onclick="alert('Redirecting to Stripe Checkout for Dr. Ozan K. - $850')">Request Consultation</button>
-            </div>
-
-            <!-- Expert 2 -->
-            <div class="expert-card">
-                <div class="expert-tag">$700 / hr</div>
-                <h3 class="expert-name">Emre S.</h3>
-                <div class="expert-title">Lead Process Engineer | Global Manufacturing</div>
-                <p class="expert-bio">Directs large-scale production lines and automated cooling device manufacturing. Expert in cross-border material sourcing and rapid production scaling for consumer electronics.</p>
-                <button class="book-btn" onclick="alert('Redirecting to Stripe Checkout for Emre S. - $700')">Request Consultation</button>
-            </div>
-
-            <!-- Expert 3 -->
-            <div class="expert-card">
-                <div class="expert-tag">$600 / hr</div>
-                <h3 class="expert-name">Aylin T.</h3>
-                <div class="expert-title">PhD Researcher | Applied Thermodynamics</div>
-                <p class="expert-bio">Leading researcher in combustion theory and macroeconomics of energy. Advises private equity and institutional investors on energy sector viability and emerging mechanical technologies.</p>
-                <button class="book-btn" onclick="alert('Redirecting to Stripe Checkout for Aylin T. - $600')">Request Consultation</button>
-            </div>
+        <!-- Expert 2: Corporate Integration -->
+        <div class="card">
+            <span class="badge">CORPORATE VET</span>
+            <h3>Senior Operations Manager</h3>
+            <p>10 years in corporate leadership. Learn to navigate office politics and fast-track your promotion.</p>
+            <p><strong>Rate: $120/hr</strong></p>
+            <button class="btn" onclick="window.open('https://stripe.com/placeholder')">Book & Pay</button>
+            <button class="btn btn-video" onclick="startMeeting('Vantek-Corporate-Room')">Join Meeting Room</button>
         </div>
-    </section>
 
-    <footer>
-        <p>&copy; 2026 Vanguard Industrial Network. All rights reserved.</p>
-        <div class="founder-info">
-            Operated by Ahmed Emad Malek, Physicist & Mechanical Engineer. ID: 2326841
+        <!-- Expert 3: Technical Specialized -->
+        <div class="card">
+            <span class="badge">TECHNICAL LEAD</span>
+            <h3>Applied Physics & Control Systems</h3>
+            <p>Verification of complex system designs, thermodynamics, and fluid mechanics modeling.</p>
+            <p><strong>Rate: $150/hr</strong></p>
+            <button class="btn" onclick="window.open('https://stripe.com/placeholder')">Book & Pay</button>
+            <button class="btn btn-video" onclick="startMeeting('Vantek-Technical-Room')">Join Meeting Room</button>
         </div>
-    </footer>
+    </div>
+
+    <!-- Video Meeting Interface -->
+    <div id="video-room">
+        <h2>Live Session: <span id="room-name"></span></h2>
+        <div id="jitsi-container"></div>
+        <button class="btn" style="background:red; margin-top:1rem;" onclick="closeMeeting()">End Meeting</button>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Vantek Global. All Rights Reserved.</p>
+    <p>Submitting for Academic Review: Ahmed Emad Malek | Student ID: 2326841</p> <!-- -->
+</footer>
+
+<script>
+    function startMeeting(roomID) {
+        document.getElementById('video-room').style.display = 'block';
+        document.getElementById('room-name').innerText = roomID;
+        document.querySelector('.expert-grid').style.display = 'none';
+
+        const domain = "meet.jit.si";
+        const options = {
+            roomName: roomID,
+            width: '100%',
+            height: 600,
+            parentNode: document.querySelector('#jitsi-container'),
+            interfaceConfigOverwrite: {
+                TOOLBAR_BUTTONS: ['microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen', 'fodeviceselection', 'hangup', 'profile', 'chat', 'recording', 'livestreaming', 'etherpad', 'sharedvideo', 'settings', 'raisehand', 'videoquality', 'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts', 'tileview', 'videobackgroundblur', 'download', 'help', 'mute-everyone', 'e2ee'],
+            },
+        };
+        const api = new JitsiMeetExternalAPI(domain, options);
+    }
+
+    function closeMeeting() {
+        location.reload(); // Simplest way to clear the Jitsi instance
+    }
+</script>
 
 </body>
 </html>
